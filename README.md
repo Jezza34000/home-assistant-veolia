@@ -44,5 +44,5 @@ If you want to contribute to this please read the [Contribution guidelines](CONT
 [maintenance-shield]: https://img.shields.io/badge/maintainer-%20%40Jezza34000-blue.svg?style=for-the-badge
 [releases-shield]: https://img.shields.io/github/release/Jezza34000/integration_blueprint.svg?style=for-the-badge
 [releases]: https://github.com/Jezza34000/home-assistant-veolia/releases
-[logoimg]: images/veolialogo.png
-[appareilimg]: images/sensors.png
+[veolialogoimg]: images/veolialogo.png
+[sensorsimg]: images/sensors.png
