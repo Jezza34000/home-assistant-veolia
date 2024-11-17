@@ -7,6 +7,9 @@
 ![Project Maintenance][maintenance-shield]
 
 
+> ## Compatible with Veolia's new website: https://www.eau.veolia.fr/
+
+
 **This integration will set up the following platforms.**
 
 Platform | Description
