@@ -18,6 +18,8 @@ Platform | Description
 
 ![sensors][sensorsimg]
 
+
+
 ## Installation
 
 1. Using the tool of choice open the directory (folder) for your HA configuration (where you find `configuration.yaml`).
@@ -29,6 +31,11 @@ Platform | Description
 1. In the HA UI go to "Configuration" -> "Integrations" click "+" and search for "Integration blueprint"
 
 ## Configuration is done in the UI
+
+## Veolia API
+
+This integration uses the Veolia API client developed by me : [veolia-api](https://github.com/Jezza34000/veolia-api).
+
 
 <!---->
 
