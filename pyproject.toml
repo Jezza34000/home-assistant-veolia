@@ -1,0 +1,129 @@
+[tool.pre-commit-update]
+dry_run = false
+all_versions = false
+verbose = true
+preview = false
+exclude = []
+keep = []
+
+[tool.codespell]
+ignore-words-list = "aaa"
+
+[tool.ruff]
+target-version = "py312"
+exclude = ["setup.py"]
+
+[tool.ruff.lint]
+select = [
+    "D",     # pydocstyle (D)
+    "E",     # pycodestyle Error (E)
+    "F",     # Pyflakes (F)
+    "W",     # pycodestyle Warning (W)
+    "C90",   # mccabe (C90)
+    "I",     # isort (I)
+    "N",     # pep8-naming (N)
+    "UP",    # pyupgrade (UP)
+    "YTT",   # flake8-2020 (YTT)
+    "ASYNC", # flake8-async (ASYNC)
+    "S",     # flake8-bandit (S)
+    "B",     # flake8-bugbear (B)
+    "A",     # flake8-builtins (A)
+    "ANN",   # flake8-annotations (ANN)
+    "COM",   # flake8-commas (COM)
+    "C4",    # flake8-comprehensions (C4)
+    "DTZ",   # flake8-datetimez (DTZ)
+    "T10",   # flake8-debugger (T10)
+    "EM",    # flake8-errmsg (EM)
+    "EXE",   # flake8-executable (EXE)
+    "FA",    # flake8-future-annotations (FA)
+    "ISC",   # flake8-import-conventions (ICN)
+    "ICN",   # flake8-import-conventions (ICN)
+    "PIE",   # flake8-pie (PIE)
+    "T20",   # flake8-print (T20)
+    "PYI",   # flake8-pyi (PYI)
+    "PT",    # flake8-pytest-style (PT)
+    "Q",     # flake8-quotes (Q)
+    "RSE",   # flake8-raise (RSE)
+    "RET",   # flake8-return (RET)
+    "SLF",   # flake8-self (SLF)
+    "SLOT",  # flake8-slots (SLOT)
+    "SIM",   # flake8-simplify (SIM)
+    "TID",   # flake8-tidy-imports (TID)
+    "TCH",   # flake8-type-checking (TCH)
+    "INT",   # flake8-gettext (INT)
+    "ERA",   # eradicate (ERA)
+    "PD",    # pandas-vet (PD)
+    "PGH",   # pygrep-hooks (PGH)
+    "PL",    # Pylint (PL)
+    "FLY",   # flynt (FLY)
+    "NPY",   # NumPy-specific rules (NPY)
+    "AIR",   # Airflow (AIR)
+    "PERF",  # Perflint (PERF)
+    "RUF",   # Ruff-specific rules (RUF)
+    "ARG",   # flake8-unused-arguments (ARG)
+    "PTH",   # flake8-use-pathlib (PTH)
+    "TD",    # flake8-todos (TD)
+    "FIX",   # flake8-fxme (FIX)
+    "BLE",   # flake8-blind-except (BLE)
+    "INP",   # flake8-no-pep420 (INP) implicit-namespace-package '__init__.py'
+    "G",     # flake8-logging-format (G)
+]
+
+# Ignored rules
+#   "FBT",   # flake8-boolean-trap (FBT)
+#   "CPY"    # flake8-copyright (CPY) unstable
+#   "DJ",    # flake8-django (DJ)
+#   "TRY",   # tryceratops (TRY)
+
+## Ignore error code
+ignore = [
+    "D203", # D203/D211 are incompatible, using D211 => no-blank-line-before-class
+    "D205", # docstring style
+    "D415", # docstring style
+    "D212", # D212/D213 are incompatible, using D213 => multi-line-summary-second-line
+    "ANN101", # missing-type-self. This rule make nosense and cause headache
+    "EM101", # counter-productive : creates more lines and decreases readability
+    "EM102", # counter-productive : creates more lines and decreases readability
+    "S105", # Wrong possible hardcoded password assigned
+]
+
+[tool.ruff.lint.per-file-ignores]
+"usage_example.py" = [
+    "ERA001", # Commented out code
+    "T201", # print found
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.bumpver]
+current_version = "1.0.0"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message = "bump version {old_version} -> {new_version}"
+tag_message = "{new_version}"
+tag_scope = "default"
+pre_commit_hook = ""
+post_commit_hook = ""
+commit = true
+tag = true
+push = true
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = [
+    'current_version = "{version}"',
+]
+"setup.py" = [
+    "{version}",
+    "{pep440_version}",
+]
+"README.md" = [
+    "{version}",
+    "{pep440_version}",
+]
+
+[tool.tox]
+envlist = ["pre-commit"]
+
+[testenv.pre-commit]
+deps = ["pre-commit"]
+commands = ["pre-commit run --all-files"]

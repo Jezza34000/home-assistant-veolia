@@ -1,0 +1,35 @@
+{
+  "title": "Veolia",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configuration Veolia",
+        "description": "Veuillez entrer vos informations de compte Veolia.",
+        "data": {
+          "username": "Nom d'utilisateur",
+          "password": "Mot de passe"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Authentification invalide",
+      "cannot_connect": "Impossible de se connecter"
+    },
+    "abort": {
+      "already_configured": "Ce compte est déjà configuré"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "veolia_index": {
+        "name": "Index consommation"
+      },
+      "daily_consumption": {
+        "name": "Consommation journalière"
+      },
+      "monthly_consumption": {
+        "name": "Consommation mensuelle"
+      }
+    }
+  }
+}

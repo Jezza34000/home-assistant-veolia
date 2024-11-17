@@ -1,0 +1,9 @@
+__pycache__
+.pytest*
+*.egg-info
+.coverage
+.vscode
+coverage.xml
+.ruff_cache
+/get_annual_example.txt
+/get_monthly_exemple.txt
