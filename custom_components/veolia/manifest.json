@@ -11,6 +11,6 @@
   "version": "1.0.0",
   "loggers": ["veolia"],
   "requirements": [
-    "veolia_api==1.1.0"
+    "veolia_api==1.1.1"
   ]
 }
