@@ -1,10 +1,13 @@
 ![veolialogo][veolialogoimg]
 
 [![GitHub Release][releases-shield]][releases]
+[![hacs][hacsbadge]][hacs]
+
+
 [![GitHub Activity][commits-shield]][commits]
 [![License][license-shield]](LICENSE)
-
 ![Project Maintenance][maintenance-shield]
+
 
 > ## Compatible avec le nouveau site de Veolia : https://www.eau.veolia.fr/
 
@@ -64,13 +67,13 @@ Le modèle de code a principalement été tiré du modèle de blueprint de @Lude
 
 ---
 <!---->
-[commits-shield]: https://img.shields.io/github/commit-activity/y/ludeeus/integration_blueprint.svg?style=for-the-badge
-[commits]: https://github.com/Jezza34000/home-assistant-veolia/commits/main
-[exampleimg]: example.png
-[forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg?style=for-the-badge
-[license-shield]: https://img.shields.io/github/license/ludeeus/integration_blueprint.svg?style=for-the-badge
-[maintenance-shield]: https://img.shields.io/badge/maintainer-%20%40Jezza34000-blue.svg?style=for-the-badge
+[hacsbadge]: https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge
+[hacs]: https://hacs.xyz
 [releases-shield]: https://img.shields.io/github/v/release/Jezza34000/home-assistant-veolia.svg?style=for-the-badge
 [releases]: https://github.com/Jezza34000/home-assistant-veolia/releases
+[commits-shield]: https://img.shields.io/github/commit-activity/y/ludeeus/integration_blueprint.svg?style=for-the-badge
+[commits]: https://github.com/Jezza34000/home-assistant-veolia/commits/main
+[license-shield]: https://img.shields.io/github/license/ludeeus/integration_blueprint.svg?style=for-the-badge
+[maintenance-shield]: https://img.shields.io/badge/maintainer-%20%40Jezza34000-blue.svg?style=for-the-badge
 [veolialogoimg]: images/veolialogo.png
 [sensorsimg]: images/sensors.png
