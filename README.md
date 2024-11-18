@@ -6,19 +6,15 @@
 
 ![Project Maintenance][maintenance-shield]
 
-
 > ## Compatible with Veolia's new website: https://www.eau.veolia.fr/
-
 
 **This integration will set up the following platforms.**
 
-Platform | Description
--- | --
-`sensor` | Show info from Veolia API.
+| Platform | Description                |
+| -------- | -------------------------- |
+| `sensor` | Show info from Veolia API. |
 
 ![sensors][sensorsimg]
-
-
 
 ## Installation
 
@@ -36,15 +32,13 @@ Platform | Description
 
 This integration uses the Veolia API client developed by me : [veolia-api](https://github.com/Jezza34000/veolia-api).
 
-
 <!---->
 
 ## Contributions are welcome!
 
 If you want to contribute to this please read the [Contribution guidelines](CONTRIBUTING.md)
 
-***
-
+---
 
 [commits-shield]: https://img.shields.io/github/commit-activity/y/ludeeus/integration_blueprint.svg?style=for-the-badge
 [commits]: https://github.com/Jezza34000/home-assistant-veolia/commits/main
