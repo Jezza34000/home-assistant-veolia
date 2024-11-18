@@ -6,47 +6,59 @@
 
 ![Project Maintenance][maintenance-shield]
 
-> ## Compatible with Veolia's new website: https://www.eau.veolia.fr/
+> ## Compatible avec le nouveau site de Veolia : https://www.eau.veolia.fr/
 
-**This integration will set up the following platforms.**
 
-| Platform | Description                |
-| -------- | -------------------------- |
-| `sensor` | Show info from Veolia API. |
+## Informations disponibles
+**Cette intégration configurera les plateformes suivantes.**
+
+| Plateforme | Description                               |
+| ---------- |-------------------------------------------|
+| `sensor`   | Affiche les informations de l'API Veolia  |
+
+- Consommation d'eau (journalière, mensuelle)
+- Index de consommation d'eau
+
 
 ![sensors][sensorsimg]
 
 ## Installation
 
-1. Using the tool of choice open the directory (folder) for your HA configuration (where you find `configuration.yaml`).
-1. If you do not have a `custom_components` directory (folder) there, you need to create it.
-1. In the `custom_components` directory (folder) create a new folder called `integration_blueprint`.
-1. Download _all_ the files from the `custom_components/integration_blueprint/` directory (folder) in this repository.
-1. Place the files you downloaded in the new directory (folder) you created.
-1. Restart Home Assistant
-1. In the HA UI go to "Configuration" -> "Integrations" click "+" and search for "Integration blueprint"
+### Via HACS (recommandé)
 
-## Configuration is done in the UI
+1. Ouvrez HACS (Home Assistant Community Store)
+2. Cliquez sur `Intégrations`
+3. Cliquez sur les trois points en haut à droite
+4. Cliquez sur `Intégrations personnalisées`
+5. Recherchez `Veolia`
+6. Cliquez sur `Installer`
+7. Redémarrez Home Assistant
+8. Suivez les instructions de configuration
 
-## Veolia API
+### Manuellement
 
-This integration uses the Veolia API client developed by me : [veolia-api](https://github.com/Jezza34000/veolia-api).
+1. Copiez le dossier `custom_components/veolia` dans le dossier `custom_components` de votre configuration Home Assistant.
+2. Redémarrez Home Assistant
 
-<!---->
+## API Veolia
 
-## Contributions are welcome!
+Cette intégration utilise mon client API Veolia disponible ici : [veolia-api](https://github.com/Jezza34000/veolia-api).
 
-If you want to contribute to this please read the [Contribution guidelines](CONTRIBUTING.md)
+## Les contributions sont les bienvenues !
+
+## Credits
+
+Le modèle de code a principalement été tiré du modèle de blueprint de @Ludeeus.
 
 ---
-
+<!---->
 [commits-shield]: https://img.shields.io/github/commit-activity/y/ludeeus/integration_blueprint.svg?style=for-the-badge
 [commits]: https://github.com/Jezza34000/home-assistant-veolia/commits/main
 [exampleimg]: example.png
 [forum-shield]: https://img.shields.io/badge/community-forum-brightgreen.svg?style=for-the-badge
 [license-shield]: https://img.shields.io/github/license/ludeeus/integration_blueprint.svg?style=for-the-badge
 [maintenance-shield]: https://img.shields.io/badge/maintainer-%20%40Jezza34000-blue.svg?style=for-the-badge
-[releases-shield]: https://img.shields.io/github/release/Jezza34000/integration_blueprint.svg?style=for-the-badge
+[releases-shield]: https://img.shields.io/github/v/release/Jezza34000/home-assistant-veolia.svg?style=for-the-badge
 [releases]: https://github.com/Jezza34000/home-assistant-veolia/releases
 [veolialogoimg]: images/veolialogo.png
 [sensorsimg]: images/sensors.png
