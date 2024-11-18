@@ -1,10 +1,11 @@
 """Adds config flow for Veolia."""
 
-import voluptuous as vol
-from homeassistant import config_entries
-from homeassistant.const import CONF_PASSWORD, CONF_USERNAME
 from veolia_api import VeoliaAPI
 from veolia_api.exceptions import VeoliaAPIError
+import voluptuous as vol
+
+from homeassistant import config_entries
+from homeassistant.const import CONF_PASSWORD, CONF_USERNAME
 
 from .const import DOMAIN
 
