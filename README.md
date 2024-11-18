@@ -24,7 +24,13 @@
 
 ## Installation
 
-### Via HACS (recommandé)
+### Via [HACS](https://hacs.xyz/) (recommandé)
+
+**Cliquez ici:**
+
+[![Open your Home Assistant instance and open the repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg?style=flat-square)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Jezza34000&repository=home-assistant-veolia&category=integration)
+
+**ou suivez ces étapes:**
 
 1. Ouvrez HACS (Home Assistant Community Store)
 2. Cliquez sur `Intégrations`
@@ -45,6 +51,12 @@
 Cette intégration utilise mon client API Veolia disponible ici : [veolia-api](https://github.com/Jezza34000/veolia-api).
 
 ## Les contributions sont les bienvenues !
+
+## Troubleshooting
+Activer la journalisation du débogage
+
+Pour activer la journalisation du débogage, accédez à `Paramètres` -> `Appareils et services`, ouvrez l'intégration "Veolia" et cliquez sur `Activer l'enregistrement des journaux`.
+Reproduiez le problème, puis envoyez-moi les journaux.
 
 ## Credits
 
