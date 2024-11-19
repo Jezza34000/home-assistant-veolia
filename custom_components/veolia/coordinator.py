@@ -35,7 +35,7 @@ class VeoliaDataUpdateCoordinator(DataUpdateCoordinator):
             hass=hass,
             logger=LOGGER,
             name=DOMAIN,
-            update_interval=timedelta(days=1),
+            update_interval=timedelta(hours=6),
         )
         LOGGER.debug("Initializing client VeoliaAPI")
 
