@@ -15,6 +15,7 @@ PLATFORMS = [SENSOR]
 LAST_DATA = -1
 IDX = "index"
 LITRE = "litre"
+CUBIC_METER = "m3"
 CONSO = "consommation"
 IDX_FIABILITY = "fiabilite_index"
 CONSO_FIABILITY = "fiabilite_conso"
