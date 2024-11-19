@@ -1,7 +1,5 @@
 """Sensor platform for Veolia."""
 
-import logging
-
 from .const import (
     CONSO,
     CONSO_FIABILITY,
@@ -11,14 +9,14 @@ from .const import (
     IDX_FIABILITY,
     LAST_DATA,
     LITRE,
+    LOGGER,
 )
 from .entity import VeoliaMesurements
-
-_LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(hass, entry, async_add_devices) -> None:
     """Set up sensor platform."""
+    LOGGER.debug("Setting up sensor platform")
     coordinator = hass.data[DOMAIN][entry.entry_id]
     sensors = [
         LastIndexSensor(coordinator, entry),
@@ -50,7 +48,7 @@ class LastIndexSensor(VeoliaMesurements):
     def native_value(self) -> int | None:
         """Return the state of the sensor."""
         state = self.coordinator.data.daily_consumption[LAST_DATA][IDX][LITRE]
-        _LOGGER.debug("Index consumption: %s L", state)
+        LOGGER.debug("Index consumption: %s L", state)
         return state if state > 0 else None
 
     @property
@@ -93,7 +91,7 @@ class DailyConsumption(VeoliaMesurements):
     def native_value(self) -> int | None:
         """Return the state of the sensor."""
         state = self.coordinator.data.daily_consumption[LAST_DATA][CONSO][LITRE]
-        _LOGGER.debug("Daily consumption: %s L", state)
+        LOGGER.debug("Daily consumption: %s L", state)
         return state if state > 0 else None
 
     @property
@@ -136,7 +134,7 @@ class MonthlyConsumption(VeoliaMesurements):
     def native_value(self) -> int | None:
         """Return the state of the sensor."""
         state = self.coordinator.data.monthly_consumption[LAST_DATA][CONSO][LITRE]
-        _LOGGER.debug("Monthly consumption: %s L", state)
+        LOGGER.debug("Monthly consumption: %s L", state)
         return state if state > 0 else None
 
     @property

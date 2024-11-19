@@ -39,7 +39,7 @@ class VeoliaDataUpdateCoordinator(DataUpdateCoordinator):
         )
         LOGGER.debug("Initializing client VeoliaAPI")
 
-        self.api = VeoliaAPI(
+        self.client_api = VeoliaAPI(
             username=self.config_entry.data[CONF_USERNAME],
             password=self.config_entry.data[CONF_PASSWORD],
         )
@@ -52,8 +52,9 @@ class VeoliaDataUpdateCoordinator(DataUpdateCoordinator):
                 f"Fetching consumption data for {ConsumptionType.MONTHLY.value} "
                 f"Year:{now.year} Month:{now.month}",
             )
-            await self.api.fetch_all_data(now.year, now.month)
+            await self.client_api.fetch_all_data(now.year, now.month)
+            LOGGER.debug("Data fetched successfully = %s", self.client_api.account_data)
         except VeoliaAPIError as exception:
             raise ConfigEntryAuthFailed(exception) from exception
         else:
-            return self.api.account_data
+            return self.client_api.account_data

@@ -30,6 +30,36 @@
       "monthly_consumption": {
         "name": "Consommation mensuelle"
       }
+    },
+    "switch": {
+      "daily_sms_alert_switch": {
+        "name": "SMS alerte journalière"
+      },
+      "monthly_sms_alert_switch": {
+        "name": "SMS alerte mensuelle"
+      },
+      "unoccupied_alert_switch": {
+        "name": "Alerte logement vide"
+      }
+    },
+    "text": {
+      "daily_threshold_text": {
+        "name": "Seuil alerte journalière (en L)"
+      },
+      "monthly_threshold_text": {
+        "name": "Seuil alerte mensuelle (en M3)"
+      }
+    },
+    "binary_sensor": {
+      "daily_alert_binary_sensor": {
+        "name": "Alerte conso journalière"
+      },
+      "monthly_alert_binary_sensor": {
+        "name": "Alerte conso mensuelle"
+      },
+      "unoccupied_alert_binary_sensor": {
+        "name": "Alerte logement vide"
+      }
     }
   }
 }

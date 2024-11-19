@@ -1,1 +1,1 @@
-veolia_api==1.1.1
+veolia_api==1.1.2
