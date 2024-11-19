@@ -4,7 +4,7 @@
     "step": {
       "user": {
         "title": "Configuration Veolia",
-        "description": "Veuillez entrer vos informations de compte Veolia.",
+        "description": "Veuillez entrer vos informations de connexion pour Veolia \n(cette intégration ne fonctionne que pour : https://www.eau.veolia.fr/)",
         "data": {
           "username": "Nom d'utilisateur",
           "password": "Mot de passe"
