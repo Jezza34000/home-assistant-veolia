@@ -33,21 +33,23 @@
 ### Configuration des alertes
 
 L'intégration Veolia permet de configurer des alertes de consommation d'eau pour surveiller votre utilisation 
-quotidienne et mensuelle. Les alertes peuvent être activées ou désactivées, et des seuils de consommation peuvent 
-être définis pour recevoir des notifications.
+quotidienne et mensuelle, et même pour détecter une fuite si vous n'êtes pas chez vous.
+
+Les alertes sont activées ou désactivées, en renseignant les champs seuils d'alertes (0 = désactivé, >0 = activé)
+
 
 Il existe 3 types d'alertes :
 - Alerte journalière
-  - L'alerte journalière est une alerte qui se déclenche si votre consommation d'eau quotidienne dépasse un certain seuil **cette valeur est en litre**
+  - L'alerte journalière est une alerte qui se déclenche si votre consommation d'eau quotidienne dépasse un certain seuil **cette valeur est en litre, le minimum est de 100 litres.**
 - Alerte mensuelle
-  - L'alerte mensuelle est une alerte qui se déclenche si votre consommation d'eau mensuelle dépasse un certain seuil **cette valeur est en metre cubes**
+  - L'alerte mensuelle est une alerte qui se déclenche si votre consommation d'eau mensuelle dépasse un certain seuil **cette valeur est en metre cubes, le minimum est de 1m3**.
 - Alerte logement "vide"
   - L'alerte logement vide est une alerte qui se déclenche si une consommation d'eau est détectée alors que vous n'êtes pas chez vous.
 
 Informations supplémentaires :
 > Les notifications d'alerte sont envoyées par Veolia directement par email et par SMS (aux coordonnées de contact renseigné dans votre compte Veolia).
 
-> Il n'est pas possible de désactiver les notifications d'alerte par email, mais vous pouvez configurer les notifications par SMS.
+> Il n'est pas possible de désactiver les notifications d'alerte par email, mais vous pouvez configurer les notifications par SMS, uniquement si l'alerte est activée.
 
 ## Installation
 
