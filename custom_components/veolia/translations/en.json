@@ -30,6 +30,36 @@
       "monthly_consumption": {
         "name": "Monthly consumption"
       }
+    },
+    "switch": {
+      "daily_sms_alert_switch": {
+        "name": "SMS daily alert"
+      },
+      "monthly_sms_alert_switch": {
+        "name": "SMS monthly alert"
+      },
+      "unoccupied_alert_switch": {
+        "name": "Unoccupied alert"
+      }
+    },
+    "text": {
+      "daily_threshold_text": {
+        "name": "Daily threshold alert"
+      },
+      "monthly_threshold_text": {
+        "name": "Monthly threshold alert"
+      }
+    },
+    "binary_sensor": {
+      "daily_alert_binary_sensor": {
+        "name": "Daily consumption alert"
+      },
+      "monthly_alert_binary_sensor": {
+        "name": "Monthly consumption alert"
+      },
+      "unoccupied_alert_binary_sensor": {
+        "name": "Unoccupied alert"
+      }
     }
   }
 }
