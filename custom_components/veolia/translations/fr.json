@@ -12,8 +12,8 @@
       }
     },
     "error": {
-      "invalid_auth": "Authentification invalide",
-      "cannot_connect": "Impossible de se connecter"
+      "invalid_credentials": "Nom d'utilisateur ou mot de passe incorrect",
+      "unknown": "Impossible de se connecter, consultez les journaux pour plus d'informations"
     },
     "abort": {
       "already_configured": "Ce compte est déjà configuré"
