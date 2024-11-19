@@ -22,13 +22,16 @@
   "entity": {
     "sensor": {
       "veolia_index": {
-        "name": "Index consommation"
+        "name": "Index compteur"
       },
       "daily_consumption": {
-        "name": "Consommation journalière"
+        "name": "Conso journalière"
       },
       "monthly_consumption": {
-        "name": "Consommation mensuelle"
+        "name": "Conso mensuelle"
+      },
+      "annual_consumption": {
+        "name": "Conso annuelle"
       }
     },
     "switch": {

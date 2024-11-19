@@ -29,6 +29,9 @@
       },
       "monthly_consumption": {
         "name": "Monthly consumption"
+      },
+      "annual_consumption": {
+        "name": "Annual consumption"
       }
     },
     "switch": {
