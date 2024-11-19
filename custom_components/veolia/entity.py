@@ -29,16 +29,7 @@ class VeoliaMesurements(CoordinatorEntity, SensorEntity):
         }
 
     @property
-    def state_class(self) -> str:
-        """Return the state_class of the sensor."""
-        return SensorStateClass.TOTAL_INCREASING
-
-    @property
     def device_class(self) -> str:
         """Return the device_class of the sensor."""
         return SensorDeviceClass.WATER
 
-    @property
-    def native_unit_of_measurement(self) -> str:
-        """Return the unit_of_measurement of the sensor."""
-        return UnitOfVolume.LITERS
