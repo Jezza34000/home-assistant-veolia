@@ -39,7 +39,9 @@ async def async_setup_entry(hass, entry):
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN][entry.entry_id] = coordinator
 
-    await hass.config_entries.async_forward_entry_setups(entry, ["sensor"])
+    await hass.config_entries.async_forward_entry_setups(
+        entry, ["sensor", "switch", "text", "binary_sensor"]
+    )
     return True
 
 
@@ -47,8 +49,13 @@ async def async_unload_entry(
     hass: HomeAssistant,
     entry: VeoliaConfigEntry,
 ) -> bool:
-    """Handle removal of an entry."""
-    return await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
+    """Unload a config entry."""
+    unload_ok = await hass.config_entries.async_unload_platforms(
+        entry, ["sensor", "switch", "text", "binary_sensor"]
+    )
+    if unload_ok:
+        hass.data[DOMAIN].pop(entry.entry_id)
+    return unload_ok
 
 
 async def async_reload_entry(
