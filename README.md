@@ -8,6 +8,7 @@
 ![Project Maintenance][maintenance-shield]
 
 > ### UNIQUEMENT compatible avec le nouveau site de Veolia : https://www.eau.veolia.fr/
+> #### (N'est pas compatible avec la version IDF de Veolia https://espace-client.vedif.eau.veolia.fr)
 
 ## Informations disponibles
 
