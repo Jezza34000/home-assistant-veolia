@@ -49,13 +49,13 @@ Il existe 3 types d'alertes :
 Informations supplémentaires :
 > Les notifications d'alerte sont envoyées par Veolia directement par email et par SMS (aux coordonnées de contact renseigné dans votre compte Veolia).
 
-> Il n'est pas possible de désactiver les notifications d'alerte par email, mais vous pouvez configurer les notifications par SMS, uniquement si l'alerte est activée.
+> Il n'est pas possible de désactiver les notifications d'alerte par email, mais vous pouvez choisir d'activer ou pas les notifications par SMS, uniquement si un seuil est renseigné.
 
 ## Installation
 
 ### Via [HACS](https://hacs.xyz/) (recommandé)
 
-**Cliquez ici:**
+**Cliquez ici:** 
 
 [![Open your Home Assistant instance and open the repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg?style=flat-square)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Jezza34000&repository=home-assistant-veolia&category=integration)
 
@@ -64,29 +64,30 @@ Informations supplémentaires :
 1. Ouvrez HACS (Home Assistant Community Store)
 2. Cliquez sur `Intégrations`
 3. Cliquez sur les trois points en haut à droite
-4. Cliquez sur `Intégrations personnalisées`
-5. Recherchez `Veolia`
-6. Cliquez sur `Installer`
+4. Cliquez sur `Dépôts personnalisées`
+5. Dans le champ `Dépôt` entrez https://github.com/Jezza34000/home-assistant-veolia/
+6. Dans le champ `Type` sélectionnez `Intégration`
+6. Cliquez sur `Ajouter`
+7. Recherchez `Veolia` dans la liste des intégrations
+8. Installez l'intégration
 7. Redémarrez Home Assistant
-8. Suivez les instructions de configuration
+8. Ouvrez paramètres -> intégrations -> ajouter une intégration -> recherchez `Veolia`
+9. Suivez les instructions pour configurer l'intégration
 
 ### Manuellement
 
 1. Copiez le dossier `custom_components/veolia` dans le dossier `custom_components` de votre configuration Home Assistant.
 2. Redémarrez Home Assistant
+3. Ouvrez paramètres -> intégrations -> ajouter une intégration -> recherchez `Veolia`
+9. Suivez les instructions pour configurer l'intégration
+
+## Bug et demande de fonctionnalités
+
+- [Cliquez-ici](https://github.com/Jezza34000/home-assistant-veolia/issues)
 
 ## API Veolia
 
 Cette intégration utilise mon client API Veolia disponible ici : [veolia-api](https://github.com/Jezza34000/veolia-api).
-
-## Les contributions sont les bienvenues !
-
-## Troubleshooting
-
-Activer la journalisation du débogage
-
-Pour activer la journalisation du débogage, accédez à `Paramètres` -> `Appareils et services`, ouvrez l'intégration "Veolia" et cliquez sur `Activer l'enregistrement des journaux`.
-Reproduiez le problème, puis envoyez-moi les journaux.
 
 ## Credits
 
