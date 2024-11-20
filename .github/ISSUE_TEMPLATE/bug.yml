@@ -22,6 +22,12 @@ body:
         required: true
       - label: Ce problème n'est pas un doublon de [problèmes précédents](https://github.com/Jezza34000/home-assistant-veolia/issues?q=is%3Aissue+label%3A%22Bug%22+).
         required: true
+- type: input
+  attributes:
+    label: "URL du site web de Veolia"
+    description: "Copiez-collez l'URL du site web de Veolia avec laquelle vous vous connectez à votre compte client."
+  validations:
+    required: true
 - type: textarea
   attributes:
     label: "Décrire le problème"
