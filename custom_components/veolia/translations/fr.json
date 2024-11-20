@@ -32,6 +32,9 @@
       },
       "annual_consumption": {
         "name": "Conso annuelle"
+      },
+      "last_consumption_date": {
+          "name": "Dernier relevé"
       }
     },
     "switch": {
