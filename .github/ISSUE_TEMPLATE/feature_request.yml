@@ -1,0 +1,38 @@
+---
+name: "Demande de nouvelle fonctionnalité"
+description: "Suggérer une idée pour ce projet"
+labels: "Feature+Request"
+body:
+- type: markdown
+  attributes:
+    value: Avant de soumettre une nouvelle demande de fonctionnalité, recherchez parmi les demandes existantes pour voir si d'autres ont eu la même idée.
+- type: checkboxes
+  attributes:
+    label: Liste de contrôle
+    options:
+      - label: Cette demande ne contient qu'une seule demande de fonctionnalité (si vous avez plusieurs demandes, ouvrez une demande pour chaque fonctionnalité).
+        required: true
+      - label: Cette demande n'est pas un doublon de [demandes précédentes](https://github.com/ludeeus/integration_blueprint/issues?q=is%3Aissue+label%3A%22Feature+Request%22+).
+        required: true
+
+- type: textarea
+  attributes:
+    label: "Votre demande de fonctionnalité est-elle liée à un problème ? Veuillez décrire."
+    description: "Une description claire et concise du problème."
+    placeholder: "Je suis toujours frustré lorsque [...]"
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: "Décrivez la solution que vous souhaitez"
+    description: "Une description claire et concise de ce que vous voulez qu'il se passe."
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: "Contexte supplémentaire"
+    description: "Ajoutez tout autre contexte ou capture d'écran concernant la demande de fonctionnalité ici."
+  validations:
+    required: true

@@ -1,0 +1,50 @@
+---
+name: "Rapport de bug"
+description: "Signaler un bug avec l'intégration. Il est important de fournir autant d'informations que possible pour aider à résoudre le problème."
+labels: "Bug"
+body:
+- type: markdown
+  attributes:
+    value: Avant d'ouvrir un nouveau bug, recherchez parmi les bugs existants pour voir si d'autres ont déjà rencontré ce problème.
+- type: textarea
+  attributes:
+    label: "Détails de la santé du système"
+    description: "Collez les données de la Santé du système de Home Assistant (https://www.home-assistant.io/more-info/system-health#github-issues)"
+  validations:
+    required: true
+- type: checkboxes
+  attributes:
+    label: Checklist
+    options:
+      - label: J'ai activé l'enregistrement des journaux de debug pour mon installation.
+        required: true
+      - label: J'ai rempli le rappot de bug au mieux de mes capacités.
+        required: true
+      - label: Cette requête ne contient qu'un seul problème (si vous constater plusieurs problèmes, ouvrez un bug pour chaque problème).
+        required: true
+      - label: Ce problème n'est pas un doublon de [problèmes précédents](https://github.com/Jezza34000/home-assistant-veolia/issues?q=is%3Aissue+label%3A%22Bug%22+).
+        required: true
+- type: textarea
+  attributes:
+    label: "Décrire le problème"
+    description: "Une description claire et concise de ce que vous constatez."
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: "Étapes de reproduction"
+    description: "Expliquez comment reproduire le problème que vous rencontrez."
+    value: |
+      1.
+      2.
+      3.
+      ...
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: "Journaux de débogage"
+    description: "Pour activer les journaux de débogage, consultez ceci https://www.home-assistant.io/integrations/logger/, cela **doit** inclure _tout_ depuis le démarrage de Home Assistant jusqu'au point où vous rencontrez le problème. ATTENTION : Ne pas inclure de données personnelles."
+    render: text
+  validations:
+    required: true
