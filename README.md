@@ -7,8 +7,8 @@
 [![License][license-shield]](LICENSE)
 ![Project Maintenance][maintenance-shield]
 
-> ### UNIQUEMENT compatible avec le nouveau site de Veolia : https://www.eau.veolia.fr/
-> #### (N'est pas compatible avec les sites suivant : service.eau.veolia.fr & espace-client.vedif.eau.veolia.fr)
+> ## UNIQUEMENT compatible avec le nouveau site de Veolia : https://www.eau.veolia.fr/
+> ## N'est PAS compatible avec les sites suivant : https://service.eau.veolia.fr & https://espace-client.vedif.eau.veolia.fr
 
 ## Informations disponibles
 
