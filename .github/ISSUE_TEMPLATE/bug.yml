@@ -25,7 +25,7 @@ body:
 - type: input
   attributes:
     label: "URL du site web de Veolia"
-    description: "Copiez-collez l'URL du site web de Veolia avec laquelle vous vous connectez à votre compte client."
+    description: "Copiez-collez l'URL du site web de Veolia avec laquelle vous vous connectez à votre compte client, celle qui apparait dans la barre d'adresse de votre navigateur une fois sur la page d'accueil de votre compte client."
   validations:
     required: true
 - type: textarea
