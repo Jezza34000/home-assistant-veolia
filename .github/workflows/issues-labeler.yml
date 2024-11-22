@@ -1,0 +1,26 @@
+name: Label issues based on template
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  add-label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Add label based on issue template
+        if: github.event.issue.body contains 'Rapport de bug'
+        run: |
+          gh issue edit ${{ github.event.issue.number }} --add-label "Bug"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add label based on issue template
+        if: github.event.issue.body contains 'Demande de nouvelle fonctionnalité'
+        run: |
+          gh issue edit ${{ github.event.issue.number }} --add-label "Feature Request"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
