@@ -26,7 +26,7 @@ repos:
           - --ignore-words-list=astroid,checkin,currenty,hass,iif,incomfort,lookin,nam,NotIn,informations
           - --skip="./.*,*.csv,*.json,*.ambr"
           - --quiet-level=2
-        exclude_types: [csv, json, html]
+        exclude_types: [csv, json, html, markdown]
         exclude: ^tests/fixtures/|homeassistant/generated/|tests/components/.*/snapshots/|.github
 
   - repo: https://github.com/psf/black
