@@ -12,8 +12,12 @@
       }
     },
     "error": {
-      "invalid_credentials": "Username or password is incorrect",
-      "unknown": "Unable to connect, check logs for more information"
+      "invalid_credentials": "Invalid username or password",
+      "unknown": "Unable to connect, check the logs for more information",
+      "commune_not_supported": "Sorry, your Veolia account is not supported. You must wait for the migration to the new site.",
+      "no_communes_found": "No communes found for this postal code",
+      "commune_not_veolia": "Veolia does not provide water in this commune",
+      "no_account": "No Veolia account found for this postal code"
     },
     "abort": {
       "already_configured": "This account is already configured"
@@ -34,7 +38,7 @@
         "name": "Annual consumption"
       },
       "last_consumption_date": {
-          "name": "Last reading"
+        "name": "Last reading"
       }
     },
     "switch": {
