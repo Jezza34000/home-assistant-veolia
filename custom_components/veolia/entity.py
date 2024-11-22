@@ -1,11 +1,6 @@
 """VeoliaEntity class."""
 
-from homeassistant.components.sensor import (
-    SensorDeviceClass,
-    SensorEntity,
-    SensorStateClass,
-)
-from homeassistant.const import UnitOfVolume
+from homeassistant.components.sensor import SensorDeviceClass, SensorEntity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DOMAIN, NAME
@@ -32,4 +27,3 @@ class VeoliaMesurements(CoordinatorEntity, SensorEntity):
     def device_class(self) -> str:
         """Return the device_class of the sensor."""
         return SensorDeviceClass.WATER
-

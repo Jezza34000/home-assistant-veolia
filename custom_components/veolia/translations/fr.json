@@ -34,7 +34,7 @@
         "name": "Conso annuelle"
       },
       "last_consumption_date": {
-          "name": "Dernier relevé"
+        "name": "Dernier relevé"
       }
     },
     "switch": {

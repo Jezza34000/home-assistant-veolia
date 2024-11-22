@@ -1,7 +1,8 @@
 """Sensor platform for Veolia."""
 
 from datetime import datetime
-from homeassistant.components.sensor import SensorStateClass, SensorEntity
+
+from homeassistant.components.sensor import SensorEntity, SensorStateClass
 from homeassistant.const import UnitOfVolume
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
@@ -15,7 +16,8 @@ from .const import (
     IDX_FIABILITY,
     LAST_DATA,
     LITRE,
-    LOGGER, NAME,
+    LOGGER,
+    NAME,
 )
 from .entity import VeoliaMesurements
 
@@ -275,7 +277,6 @@ class LastDateSensor(CoordinatorEntity, SensorEntity):
         """Return a unique ID to use for this entity."""
         return f"{self.config_entry.entry_id}_last_date"
 
-
     @property
     def has_entity_name(self) -> bool:
         """Indicate that entity has name defined."""
@@ -285,7 +286,6 @@ class LastDateSensor(CoordinatorEntity, SensorEntity):
     def translation_key(self) -> str:
         """Translation key for this entity."""
         return "last_consumption_date"
-
 
     @property
     def native_value(self) -> str | None:

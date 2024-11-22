@@ -8,6 +8,7 @@
 ![Project Maintenance][maintenance-shield]
 
 > ## UNIQUEMENT compatible avec le nouveau site de Veolia : https://www.eau.veolia.fr/
+>
 > ## N'est PAS compatible avec les sous domaines suivant : https://service.eau.veolia.fr & https://espace-client.vedif.eau.veolia.fr
 
 ## Informations disponibles
@@ -15,7 +16,7 @@
 **Cette intégration configurera les plateformes suivantes.**
 
 | Plateforme      | Description                                         |
-|-----------------|-----------------------------------------------------|
+| --------------- | --------------------------------------------------- |
 | `sensor`        | Affiche les informations de l'API Veolia            |
 | `switch`        | Switch d'activation/désactivation des alertes conso |
 | `text`          | Saisie des valeurs de réglages des alertes          |
@@ -32,13 +33,13 @@
 
 ### Configuration des alertes
 
-L'intégration Veolia permet de configurer des alertes de consommation d'eau pour surveiller votre utilisation 
+L'intégration Veolia permet de configurer des alertes de consommation d'eau pour surveiller votre utilisation
 quotidienne et mensuelle, et même pour détecter une fuite si vous n'êtes pas chez vous.
 
 Les alertes sont activées ou désactivées, en renseignant les champs seuils d'alertes (0 = désactivé, >0 = activé)
 
-
 Il existe 3 types d'alertes :
+
 - Alerte journalière
   - L'alerte journalière est une alerte qui se déclenche si votre consommation d'eau quotidienne dépasse un certain seuil **cette valeur est en litre, le minimum est de 100 litres.**
 - Alerte mensuelle
@@ -47,6 +48,7 @@ Il existe 3 types d'alertes :
   - L'alerte logement vide est une alerte qui se déclenche si une consommation d'eau est détectée alors que vous n'êtes pas chez vous.
 
 Informations supplémentaires :
+
 > Les notifications d'alerte sont envoyées par Veolia directement par email et par SMS (aux coordonnées de contact renseigné dans votre compte Veolia).
 
 > Il n'est pas possible de désactiver les notifications d'alerte par email, mais vous pouvez choisir d'activer ou pas les notifications par SMS, uniquement si un seuil est renseigné.
@@ -55,7 +57,7 @@ Informations supplémentaires :
 
 ### Via [HACS](https://hacs.xyz/) (recommandé)
 
-**Cliquez ici:** 
+**Cliquez ici:**
 
 [![Open your Home Assistant instance and open the repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg?style=flat-square)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Jezza34000&repository=home-assistant-veolia&category=integration)
 
@@ -67,19 +69,19 @@ Informations supplémentaires :
 4. Cliquez sur `Dépôts personnalisées`
 5. Dans le champ `Dépôt` entrez https://github.com/Jezza34000/home-assistant-veolia/
 6. Dans le champ `Type` sélectionnez `Intégration`
-6. Cliquez sur `Ajouter`
-7. Recherchez `Veolia` dans la liste des intégrations
-8. Installez l'intégration
-7. Redémarrez Home Assistant
-8. Ouvrez paramètres -> intégrations -> ajouter une intégration -> recherchez `Veolia`
-9. Suivez les instructions pour configurer l'intégration
+7. Cliquez sur `Ajouter`
+8. Recherchez `Veolia` dans la liste des intégrations
+9. Installez l'intégration
+10. Redémarrez Home Assistant
+11. Ouvrez paramètres -> intégrations -> ajouter une intégration -> recherchez `Veolia`
+12. Suivez les instructions pour configurer l'intégration
 
 ### Manuellement
 
 1. Copiez le dossier `custom_components/veolia` dans le dossier `custom_components` de votre configuration Home Assistant.
 2. Redémarrez Home Assistant
 3. Ouvrez paramètres -> intégrations -> ajouter une intégration -> recherchez `Veolia`
-9. Suivez les instructions pour configurer l'intégration
+4. Suivez les instructions pour configurer l'intégration
 
 ## Bug et demande de fonctionnalités
 

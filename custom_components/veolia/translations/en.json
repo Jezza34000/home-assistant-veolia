@@ -34,7 +34,7 @@
         "name": "Annual consumption"
       },
       "last_consumption_date": {
-          "name": "Last reading"
+        "name": "Last reading"
       }
     },
     "switch": {
