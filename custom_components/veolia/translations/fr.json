@@ -4,7 +4,21 @@
     "step": {
       "user": {
         "title": "Configuration Veolia",
-        "description": "Veuillez entrer vos informations de connexion pour Veolia \n(cette intégration ne fonctionne que pour : https://www.eau.veolia.fr/)",
+        "description": "Afin de tester la compatibilité de votre compte Veolia avec cette intégration,Veuillez saisir votre code postal :",
+        "data": {
+          "postal_code": "Code postal"
+        }
+      },
+      "select_commune": {
+        "title": "Sélection de la commune",
+        "description": "",
+        "data": {
+          "commune": "Veuillez sélectionner votre commune dans la liste ci-dessous :"
+        }
+      },
+      "credentials": {
+        "title": "Informations d'identification",
+        "description": "Bonne nouvelle votre compte Veolia fonctionne avec cette intégration. Veuillez entrer vos informations de connexion que vous utilisez pour vous connecter sur http://eau.veolia.fr :",
         "data": {
           "username": "Nom d'utilisateur",
           "password": "Mot de passe"
@@ -13,7 +27,11 @@
     },
     "error": {
       "invalid_credentials": "Nom d'utilisateur ou mot de passe incorrect",
-      "unknown": "Impossible de se connecter, consultez les journaux pour plus d'informations"
+      "unknown": "Impossible de se connecter, consultez les journaux pour plus d'informations",
+      "commune_not_supported": "Désolé votre compte Veolia n'est pas supportée par cette intégration. Vous devez attendre la migration vers le nouveau site (cette étape dépend uniquement de Veolia) Une fois la migration effectuée, veuillez réessayer.",
+      "no_communes_found": "Aucune commune trouvée pour ce code postal",
+      "commune_not_veolia": "Veolia ne fournit pas d'eau dans cette commune",
+      "no_account": "Aucun compte Veolia trouvé pour ce code postal"
     },
     "abort": {
       "already_configured": "Ce compte est déjà configuré"
