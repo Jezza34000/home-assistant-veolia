@@ -1,4 +1,4 @@
-![veolialogo][veolialogoimg]
+<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/home-assistant-veolia/main/images/veolialogo.png"></a>
 
 [![GitHub Release][releases-shield]][releases]
 [![hacs][hacsbadge]][hacs]
@@ -28,8 +28,15 @@
 - Index de consommation d'eau
 - Seuils d'alertes de consommation d'eau
 - Etat des alertes de consommation d'eau
+- Date de la dernière relève de consommation d'eau
 
-![sensors][sensorsimg]
+### Capteurs :
+
+<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/home-assistant-veolia/main/images/capteurs.png"></a>
+
+### Contrôles :
+
+<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/home-assistant-veolia/main/images/controles.png"></a>
 
 ### Configuration des alertes
 
@@ -107,5 +114,4 @@ Le modèle de code de cette intégration à principalement été tiré du bluepr
 [commits]: https://github.com/Jezza34000/home-assistant-veolia/commits/main
 [license-shield]: https://img.shields.io/github/license/ludeeus/integration_blueprint.svg?style=for-the-badge
 [maintenance-shield]: https://img.shields.io/badge/maintainer-%20%40Jezza34000-blue.svg?style=for-the-badge
-[veolialogoimg]: images/veolialogo.png
 [sensorsimg]: images/entities.png
