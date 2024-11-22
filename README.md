@@ -70,18 +70,17 @@ Informations supplémentaires :
 
 **ou suivez ces étapes:**
 
-1. Ouvrez HACS (Home Assistant Community Store)
-2. Cliquez sur `Intégrations`
-3. Cliquez sur les trois points en haut à droite
-4. Cliquez sur `Dépôts personnalisées`
-5. Dans le champ `Dépôt` entrez https://github.com/Jezza34000/home-assistant-veolia/
-6. Dans le champ `Type` sélectionnez `Intégration`
-7. Cliquez sur `Ajouter`
-8. Recherchez `Veolia` dans la liste des intégrations
-9. Installez l'intégration
-10. Redémarrez Home Assistant
-11. Ouvrez paramètres -> intégrations -> ajouter une intégration -> recherchez `Veolia`
-12. Suivez les instructions pour configurer l'intégration
+1. Ouvrez HACS (Home Assistant Community Store) sur votre Home Assistant
+2. Cliquez sur les trois points en haut à droite
+3. Cliquez sur `Dépôts personnalisées`
+4. Dans le champ `Dépôt` entrez https://github.com/Jezza34000/home-assistant-veolia/
+5. Dans le champ `Type` sélectionnez `Intégration`
+6. Cliquez sur `Ajouter`
+7. Recherchez `Veolia` dans la liste des intégrations
+8. Installez l'intégration
+9. Redémarrez Home Assistant
+10. Ouvrez `paramètres` -> `intégrations` -> `ajouter une intégration` -> recherchez `Veolia Eau France`
+11. Suivez les instructions pour configurer l'intégration
 
 ### Manuellement
 
