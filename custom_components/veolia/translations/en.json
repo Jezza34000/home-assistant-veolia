@@ -3,8 +3,22 @@
   "config": {
     "step": {
       "user": {
-        "title": "Configure Veolia",
-        "description": "Please enter your Veolia login information (this integration only works for: https://www.eau.veolia.fr/)",
+        "title": "Veolia configuration",
+        "description": "To test the compatibility of your Veolia account with this integration, please enter your postal code:",
+        "data": {
+          "postal_code": "Postal code"
+        }
+      },
+      "select_commune": {
+        "title": "Select your commune",
+        "description": "",
+        "data": {
+          "commune": "Please select your commune from the list below :"
+        }
+      },
+      "credentials": {
+        "title": "Credentials",
+        "description": "Good news, your Veolia account works with this integration. Please enter your login information that you use to log in to http://eau.veolia.fr :",
         "data": {
           "username": "Username",
           "password": "Password"
