@@ -1,9 +1,14 @@
 """Sensor platform for Veolia."""
 
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
+from homeassistant.components.recorder.statistics import (
+    StatisticMetaData,
+    async_import_statistics,
+)
 from homeassistant.components.sensor import SensorEntity, SensorStateClass
 from homeassistant.const import UnitOfVolume
+from homeassistant.core import callback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import (
@@ -58,13 +63,14 @@ class LastIndexSensor(VeoliaMesurements):
     def native_value(self) -> int | None:
         """Return the state of the sensor."""
         state = self.coordinator.data.daily_consumption[LAST_DATA][IDX][CUBIC_METER]
+        self._update_historical_data()
         LOGGER.debug("Index consumption: %s L", state)
         return state if state > 0 else None
 
     @property
     def state_class(self) -> str:
         """Return the state_class of the sensor."""
-        return SensorStateClass.TOTAL_INCREASING
+        return SensorStateClass.TOTAL
 
     @property
     def native_unit_of_measurement(self) -> str:
@@ -93,6 +99,71 @@ class LastIndexSensor(VeoliaMesurements):
             ],
         }
 
+    def _update_historical_data(self):
+        """Update historical data in Home Assistant."""
+        stats = []
+        total_sum = 0
+        last_state = 0
+        last_date = None
+
+        for record in self.coordinator.data.daily_consumption:
+            current_date = datetime.strptime(record[DATA_DATE], "%Y-%m-%d").replace(
+                tzinfo=timezone.utc
+            )
+            current_state = record[CONSO][LITRE] / 1000
+
+            # Fill missing dates
+            if last_date:
+                missing_dates = [
+                    {
+                        "start": last_date + timedelta(days=i),
+                        "state": last_state,
+                        "sum": total_sum,
+                    }
+                    for i in range(1, (current_date - last_date).days)
+                ]
+                stats.extend(missing_dates)
+
+            if stats:
+                total_sum += current_state
+            last_state = current_state
+            last_date = current_date
+
+            stats.append(
+                {"start": current_date, "state": current_state, "sum": total_sum}
+            )
+            LOGGER.debug(
+                f"Insert historical start: {stats[-1]['start']} state: {stats[-1]['state']} sum: {stats[-1]['sum']}"
+            )
+
+        # Fill missing dates up to today
+        today = datetime.now(timezone.utc).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
+        missing_dates = [
+            {
+                "start": last_date + timedelta(days=i),
+                "state": last_state,
+                "sum": total_sum,
+            }
+            for i in range(1, (today - last_date).days + 1)
+        ]
+        stats.extend(missing_dates)
+        for date in missing_dates:
+            LOGGER.debug(
+                f"Add more historical start: {date['start']} state: {date['state']} sum: {date['sum']}"
+            )
+
+        metadata = StatisticMetaData(
+            has_mean=False,
+            has_sum=True,
+            name=None,
+            source="recorder",
+            statistic_id="sensor.veolia_index_compteur",
+            unit_of_measurement=UnitOfVolume.CUBIC_METERS,
+        )
+        async_import_statistics(self.hass, metadata, stats)
+
 
 class DailyConsumption(VeoliaMesurements):
     """Monitors the last index."""
@@ -116,6 +187,7 @@ class DailyConsumption(VeoliaMesurements):
     def native_value(self) -> int | None:
         """Return the state of the sensor."""
         state = self.coordinator.data.daily_consumption[LAST_DATA][CONSO][LITRE]
+        self._update_historical_data()
         LOGGER.debug("Daily consumption: %s L", state)
         return state if state > 0 else None
 
@@ -151,6 +223,29 @@ class DailyConsumption(VeoliaMesurements):
             ],
         }
 
+    @callback
+    def _update_historical_data(self):
+        """Update historical data in Home Assistant."""
+        stats = [
+            {
+                "start": datetime.strptime(record[DATA_DATE], "%Y-%m-%d").replace(
+                    tzinfo=timezone.utc
+                ),
+                "state": record[CONSO][LITRE],
+            }
+            for record in self.coordinator.data.daily_consumption
+        ]
+
+        metadata = StatisticMetaData(
+            has_mean=False,
+            has_sum=True,
+            name=None,
+            source="recorder",
+            statistic_id="sensor.veolia_conso_journaliere",
+            unit_of_measurement=UnitOfVolume.LITERS,
+        )
+        async_import_statistics(self.hass, metadata, stats)
+
 
 class MonthlyConsumption(VeoliaMesurements):
     """Monitors the last index."""
@@ -173,8 +268,8 @@ class MonthlyConsumption(VeoliaMesurements):
     @property
     def native_value(self) -> int | None:
         """Return the state of the sensor."""
-        state = self.coordinator.data.monthly_consumption[LAST_DATA][CONSO][LITRE]
-        LOGGER.debug("Monthly consumption: %s L", state)
+        state = self.coordinator.data.monthly_consumption[LAST_DATA][CONSO][CUBIC_METER]
+        LOGGER.debug("Monthly consumption: %s M3", state)
         return state if state > 0 else None
 
     @property
@@ -185,12 +280,12 @@ class MonthlyConsumption(VeoliaMesurements):
     @property
     def native_unit_of_measurement(self) -> str:
         """Return the unit_of_measurement of the sensor."""
-        return UnitOfVolume.LITERS
+        return UnitOfVolume.CUBIC_METERS
 
     @property
     def suggested_display_precision(self) -> int:
         """Return the suggested display precision."""
-        return 0
+        return 3
 
     @property
     def icon(self) -> str | None:
@@ -229,9 +324,10 @@ class AnnualConsumption(VeoliaMesurements):
     def native_value(self) -> int | None:
         """Return the state of the sensor."""
         total_consumption = sum(
-            month[CONSO][LITRE] for month in self.coordinator.data.monthly_consumption
+            month[CONSO][CUBIC_METER]
+            for month in self.coordinator.data.monthly_consumption
         )
-        LOGGER.debug("Annual consumption: %s L", total_consumption)
+        LOGGER.debug("Annual consumption: %s M3", total_consumption)
         return total_consumption if total_consumption > 0 else None
 
     @property
@@ -242,12 +338,12 @@ class AnnualConsumption(VeoliaMesurements):
     @property
     def native_unit_of_measurement(self) -> str:
         """Return the unit_of_measurement of the sensor."""
-        return UnitOfVolume.LITERS
+        return UnitOfVolume.CUBIC_METERS
 
     @property
     def suggested_display_precision(self) -> int:
         """Return the suggested display precision."""
-        return 0
+        return 3
 
     @property
     def icon(self) -> str | None:
