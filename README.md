@@ -11,6 +11,12 @@
 >
 > ## N'est PAS compatible avec les sous domaines suivant : https://service.eau.veolia.fr & https://espace-client.vedif.eau.veolia.fr
 
+---
+
+<p align="center">
+  <a href="https://www.buymeacoffee.com/jezza" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" height="80" width="320"></a>
+</p>
+
 ## Informations disponibles
 
 **Cette intégration configurera les plateformes suivantes.**
@@ -29,6 +35,8 @@
 - Seuils d'alertes de consommation d'eau
 - Etat des alertes de consommation d'eau
 - Date de la dernière relève de consommation d'eau
+
+> #### **Note :** Les données de l'intégration sont mises à jour toutes les 12h.
 
 ### Capteurs :
 
@@ -60,6 +68,28 @@ Informations supplémentaires :
 
 > Il n'est pas possible de désactiver les notifications d'alerte par email, mais vous pouvez choisir d'activer ou pas les notifications par SMS, uniquement si un seuil est renseigné.
 
+### Visualisation des données de consommation
+
+L'intégration Veolia permet de visualiser les données de consommation d'eau en natif dans Home Assistant. Elle re-télécharge l'historique du mois en cours depuis Véolia et met à jour la base de données Home Assistant.
+
+#### 1. Ajout au dashboard energie de Home Assistant
+
+<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/home-assistant-veolia/main/images/dashboard_eau.png"></a>
+
+Pour ajouter la consommation d'eau au dashboard energie de Home Assistant, allez `Energie` -> 3 petits points en haut à droite -> `Configuration de l'energie` -> `Ajouter une source d'eau` -> Dans le champ `Consommation d'eau` choissisez `sensor.veolia_index_compteur`
+
+<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/home-assistant-veolia/main/images/consommation.png"></a>
+
+#### 2. Ajout d'une carte de consommation d'eau journalière
+
+<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/home-assistant-veolia/main/images/historique.png"></a>
+
+Pour ajouter la carte de consommation d'eau journalière, sur votre dashboard, cliquez sur `Ajouter une carte` puis selectionner `Graphique des statistiques` et choissisez l'entité `sensor.veolia_consommation_journaliere`, configurer la carte comme l'exemple ci-dessous :
+
+<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/home-assistant-veolia/main/images/config_carte.png"></a>
+
+> #### **Note :** La carte Graphique des statistiques ne fonctionnera qu'avec le sensor `sensor.veolia_consommation_journaliere`
+
 ## Installation
 
 ### Via [HACS](https://hacs.xyz/) (recommandé)
@@ -71,17 +101,16 @@ Informations supplémentaires :
 **ou suivez ces étapes:**
 
 1. Ouvrez HACS (Home Assistant Community Store)
-2. Cliquez sur `Intégrations`
-3. Cliquez sur les trois points en haut à droite
-4. Cliquez sur `Dépôts personnalisées`
-5. Dans le champ `Dépôt` entrez https://github.com/Jezza34000/home-assistant-veolia/
-6. Dans le champ `Type` sélectionnez `Intégration`
-7. Cliquez sur `Ajouter`
-8. Recherchez `Veolia` dans la liste des intégrations
-9. Installez l'intégration
-10. Redémarrez Home Assistant
-11. Ouvrez paramètres -> intégrations -> ajouter une intégration -> recherchez `Veolia`
-12. Suivez les instructions pour configurer l'intégration
+2. Cliquez sur les trois points en haut à droite
+3. Cliquez sur `Dépôts personnalisées`
+4. Dans le champ `Dépôt` entrez https://github.com/Jezza34000/home-assistant-veolia/
+5. Dans le champ `Type` sélectionnez `Intégration`
+6. Cliquez sur `Ajouter`
+7. Recherchez `Veolia` dans la liste des intégrations
+8. Installez l'intégration
+9. Redémarrez Home Assistant
+10. Ouvrez paramètres -> intégrations -> ajouter une intégration -> recherchez `Veolia`
+11. Suivez les instructions pour configurer l'intégration
 
 ### Manuellement
 
