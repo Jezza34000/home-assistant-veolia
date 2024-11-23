@@ -2,7 +2,7 @@
 
 import aiohttp
 from veolia_api import VeoliaAPI
-from veolia_api.exceptions import VeoliaAPIInvalidCredentialsError
+from veolia_api.exceptions import VeoliaAPIAuthError, VeoliaAPIInvalidCredentialsError
 import voluptuous as vol
 
 from homeassistant import config_entries
@@ -89,7 +89,7 @@ class VeoliaFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                         title=user_input[CONF_USERNAME],
                         data=user_input,
                     )
-            except VeoliaAPIInvalidCredentialsError:
+            except (VeoliaAPIAuthError, VeoliaAPIInvalidCredentialsError):
                 self._errors["base"] = "invalid_credentials"
             except Exception:  # noqa: BLE001
                 self._errors["base"] = "unknown"
