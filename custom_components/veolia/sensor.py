@@ -62,10 +62,13 @@ class LastIndexSensor(VeoliaMesurements):
     @property
     def native_value(self) -> int | None:
         """Return the state of the sensor."""
-        state = self.coordinator.data.daily_consumption[LAST_DATA][IDX][CUBIC_METER]
-        self._update_historical_data()
-        LOGGER.debug("Index consumption: %s L", state)
-        return state if state > 0 else None
+        if self.coordinator.data.daily_consumption:
+            state = self.coordinator.data.daily_consumption[LAST_DATA][IDX][CUBIC_METER]
+            self._update_historical_data()
+            LOGGER.debug("Index consumption: %s L", state)
+            return state if state > 0 else None
+        LOGGER.debug("No consumption data available")
+        return 0
 
     @property
     def state_class(self) -> str:
@@ -90,14 +93,17 @@ class LastIndexSensor(VeoliaMesurements):
     @property
     def extra_state_attributes(self) -> dict:
         """Return the base extra state attributes."""
-        return {
-            "data_type": self.coordinator.data.daily_consumption[LAST_DATA][
-                IDX_FIABILITY
-            ],
-            "last_report": self.coordinator.data.daily_consumption[LAST_DATA][
-                DATA_DATE
-            ],
-        }
+        if self.coordinator.data.daily_consumption:
+            return {
+                "data_type": self.coordinator.data.daily_consumption[LAST_DATA][
+                    IDX_FIABILITY
+                ],
+                "last_report": self.coordinator.data.daily_consumption[LAST_DATA][
+                    DATA_DATE
+                ],
+            }
+        LOGGER.debug("No consumption data available for extra state attributes")
+        return {}
 
     def _update_historical_data(self):
         """Update historical data in Home Assistant."""
@@ -186,10 +192,13 @@ class DailyConsumption(VeoliaMesurements):
     @property
     def native_value(self) -> int | None:
         """Return the state of the sensor."""
-        state = self.coordinator.data.daily_consumption[LAST_DATA][CONSO][LITRE]
-        self._update_historical_data()
-        LOGGER.debug("Daily consumption: %s L", state)
-        return state if state > 0 else None
+        if self.coordinator.data.daily_consumption:
+            state = self.coordinator.data.daily_consumption[LAST_DATA][CONSO][LITRE]
+            self._update_historical_data()
+            LOGGER.debug("Daily consumption: %s L", state)
+            return state if state > 0 else None
+        LOGGER.debug("No consumption data available")
+        return 0
 
     @property
     def state_class(self) -> str:
@@ -214,14 +223,17 @@ class DailyConsumption(VeoliaMesurements):
     @property
     def extra_state_attributes(self) -> dict:
         """Return the base extra state attributes."""
-        return {
-            "data_type": self.coordinator.data.daily_consumption[LAST_DATA][
-                IDX_FIABILITY
-            ],
-            "last_report": self.coordinator.data.daily_consumption[LAST_DATA][
-                DATA_DATE
-            ],
-        }
+        if self.coordinator.data.daily_consumption:
+            return {
+                "data_type": self.coordinator.data.daily_consumption[LAST_DATA][
+                    IDX_FIABILITY
+                ],
+                "last_report": self.coordinator.data.daily_consumption[LAST_DATA][
+                    DATA_DATE
+                ],
+            }
+        LOGGER.debug("No consumption data available for extra state attributes")
+        return {}
 
     @callback
     def _update_historical_data(self):
@@ -386,10 +398,13 @@ class LastDateSensor(CoordinatorEntity, SensorEntity):
     @property
     def native_value(self) -> str | None:
         """Return the state of the sensor."""
-        date_str = self.coordinator.data.daily_consumption[LAST_DATA][DATA_DATE]
-        date_obj = datetime.strptime(date_str, "%Y-%m-%d")
-        LOGGER.debug("Last date: %s", date_obj.date())
-        return date_obj.date().isoformat()
+        if self.coordinator.data.daily_consumption:
+            date_str = self.coordinator.data.daily_consumption[LAST_DATA][DATA_DATE]
+            date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+            LOGGER.debug("Last date: %s", date_obj.date())
+            return date_obj.date().isoformat()
+        LOGGER.debug("No consumption data available")
+        return None
 
     @property
     def icon(self) -> str | None:
