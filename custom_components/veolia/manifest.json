@@ -9,5 +9,5 @@
   "issue_tracker": "https://github.com/Jezza34000/home-assistant-veolia/issues",
   "loggers": ["veolia"],
   "requirements": ["veolia_api==1.2.5"],
-  "version": "1.2.5"
+  "version": "1.4.5"
 }
