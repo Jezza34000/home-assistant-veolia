@@ -1,6 +1,6 @@
 repos:
   - repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
-    rev: v0.6.0post1
+    rev: v0.8.0
     hooks:
       - id: pre-commit-update
 
@@ -19,7 +19,7 @@ repos:
       - id: requirements-txt-fixer
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.3.0
+    rev: v2.4.1
     hooks:
       - id: codespell
         args:
@@ -30,12 +30,12 @@ repos:
         exclude: ^tests/fixtures/|homeassistant/generated/|tests/components/.*/snapshots/|.github
 
   - repo: https://github.com/psf/black
-    rev: 24.10.0
+    rev: 25.1.0
     hooks:
       - id: black
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.1
+    rev: v0.12.5
     hooks:
       - id: ruff
         args:
@@ -43,7 +43,7 @@ repos:
       - id: ruff-format
 
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.21.2
+    rev: v8.28.0
     hooks:
       - id: gitleaks
 
@@ -52,7 +52,7 @@ repos:
     hooks:
       - id: prettier
   - repo: https://github.com/cdce8p/python-typing-update
-    rev: v0.7.0
+    rev: v0.7.2
     hooks:
       # Run `python-typing-update` hook manually from time to time
       # to update python typing syntax.
