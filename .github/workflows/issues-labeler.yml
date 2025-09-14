@@ -4,23 +4,23 @@ on:
   issues:
     types: [opened]
 
+permissions:
+  issues: write
+
 jobs:
   add-label:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repository
-        uses: actions/checkout@v5
-
-      - name: Add label based on issue template
-        if: github.event.issue.body contains 'Rapport de bug'
+      - name: Add Bug label
+        if: contains(github.event.issue.body, 'Rapport de bug')
         run: |
           gh issue edit ${{ github.event.issue.number }} --add-label "Bug"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Add label based on issue template
-        if: github.event.issue.body contains 'Demande de nouvelle fonctionnalité'
+      - name: Add Feature label
+        if: contains(github.event.issue.body, 'Demande de nouvelle fonctionnalité')
         run: |
           gh issue edit ${{ github.event.issue.number }} --add-label "Feature Request"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
