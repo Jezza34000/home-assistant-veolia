@@ -48,8 +48,7 @@ class LastIndexSensor(VeoliaMesurements):
     @property
     def native_value(self) -> float | None:
         """Return sensor value."""
-        state = self.coordinator.data.computed.last_index_m3
-        return state if state and state > 0 else None
+        return self.coordinator.data.computed.last_index_m3
 
     @property
     def extra_state_attributes(self) -> dict:
@@ -102,8 +101,7 @@ class DailyConsumption(VeoliaMesurements):
     @property
     def native_value(self) -> int | None:
         """Return sensor value."""
-        state = self.coordinator.data.computed.daily_today_liters
-        return state if state is not None and state > 0 else None
+        return self.coordinator.data.computed.daily_today_liters
 
     @property
     def extra_state_attributes(self) -> dict:
@@ -172,8 +170,7 @@ class MonthlyConsumption(VeoliaMesurements):
     @property
     def native_value(self) -> float | None:
         """Return sensor value."""
-        state = self.coordinator.data.computed.monthly_latest_m3
-        return state if state and state > 0 else None
+        return self.coordinator.data.computed.monthly_latest_m3
 
     @property
     def extra_state_attributes(self) -> dict:
@@ -222,8 +219,7 @@ class AnnualConsumption(VeoliaMesurements):
     @property
     def native_value(self) -> float | None:
         """Return sensor value."""
-        state = self.coordinator.data.computed.annual_total_m3
-        return state if state and state > 0 else None
+        return self.coordinator.data.computed.annual_total_m3
 
     @property
     def state_class(self) -> str:
@@ -281,8 +277,7 @@ class LastDateSensor(CoordinatorEntity, SensorEntity):
     @property
     def native_value(self) -> str | None:
         """Return sensor value."""
-        d = self.coordinator.data.computed.last_date
-        return d.isoformat() if d else None
+        return self.coordinator.data.computed.last_date
 
     @property
     def icon(self) -> str | None:
