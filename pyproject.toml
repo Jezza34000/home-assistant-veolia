@@ -270,7 +270,15 @@ push = true
 ]
 
 [tool.tox]
-envlist = ["pre-commit"]
+min_version = "4.20"
+requires = ["tox>=4.23.2"]
+env_list = ["precommit"]
+
+[tool.tox.env.precommit]
+description = "run pre-commit hooks"
+deps = ["pre-commit>=4.0.1"]
+skip_install = true
+commands = [["pre-commit", "run", "--all-files"]]
 
 [testenv.pre-commit]
 deps = ["pre-commit"]
