@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 from dataclasses import dataclass
-from datetime import date, datetime
+from datetime import date, datetime, timedelta, timezone
 from typing import Any
 
 from .const import (
@@ -15,6 +15,8 @@ from .const import (
     IDX,
     IDX_FIABILITY,
     LITRE,
+    MONTH,
+    YEAR,
 )
 
 
@@ -56,6 +58,7 @@ class VeoliaComputed:
     daily_fiability: str | None
     monthly_fiability: str | None
     daily_stats_liters: list[dict]
+    monthly_stats_cubic_meters: list[dict]
     index_stats_m3: list[dict]
     daily_today_liters: int | None
     daily_today_m3: float | None
@@ -130,45 +133,120 @@ class VeoliaModel:
 
         # Recorder data
         daily_stats_liters: list[dict] = []
+        monthly_stats_cubic_meters: list[dict] = []
         index_stats_m3: list[dict] = []
         try:
+            # Statistics for Daily
             cumul_liters = 0
             for rec in daily:
-                d = _parse_date(rec.get(DATA_DATE, ""))
-                if not d:
+                date_str = rec.get(DATA_DATE)
+                if not date_str:
                     continue
+                d = datetime.strptime(date_str, "%Y-%m-%d")
+                start = datetime(d.year, d.month, d.day, 0, 0, 0, tzinfo=timezone.utc)
                 liters = int((rec.get(CONSO) or {}).get(LITRE) or 0)
                 cumul_liters += liters
-                start_dt = datetime.combine(d, datetime.min.time())
                 daily_stats_liters.append(
-                    {"start": start_dt, "state": liters, "sum": cumul_liters}
+                    {"start": start, "state": liters, "sum": cumul_liters}
                 )
 
-            total_sum = 0.0
-            last_state = 0.0
-            last_d = None
-            for rec in daily:
-                d = _parse_date(rec.get(DATA_DATE, ""))
-                if not d:
+            # Statistics for Monthly
+            cumul_cubic_meter = 0
+            for rec in monthly:
+                year = rec.get(YEAR)
+                month = rec.get(MONTH)
+                if not year or not month:
                     continue
-                cur_state = float((rec.get(IDX) or {}).get(CUBIC_METER) or 0.0)
-                if last_d:
-                    gap = (d - last_d).days
-                    for i in range(1, gap):
-                        fill_d = last_d.fromordinal(last_d.toordinal() + i)
-                        fill_dt = datetime.combine(fill_d, datetime.min.time())
-                        index_stats_m3.append(
-                            {"start": fill_dt, "state": last_state, "sum": total_sum}
-                        )
-                total_sum += cur_state
-                last_state = cur_state
-                last_d = d
-                start_dt = datetime.combine(d, datetime.min.time())
-                index_stats_m3.append(
-                    {"start": start_dt, "state": cur_state, "sum": total_sum}
+                date_str = f"{year}-{month}-{1}"
+                d = datetime.strptime(date_str, "%Y-%m-%d")
+                start = datetime(d.year, d.month, d.day, 0, 0, 0, tzinfo=timezone.utc)
+                cubic_meter = float((rec.get(CONSO) or {}).get(CUBIC_METER) or 0)
+                cumul_cubic_meter += cubic_meter
+                monthly_stats_cubic_meters.append(
+                    {"start": start, "state": cubic_meter, "sum": cumul_cubic_meter}
                 )
+
+            index_stats_m3 = []
+            last_state = None
+            last_sum = None
+            last_date = None
+
+            for record in daily:
+                date_str = record.get(DATA_DATE)
+                if not date_str:
+                    continue
+
+                try:
+                    d = datetime.strptime(date_str, "%Y-%m-%d").date()
+                except ValueError:
+                    continue
+
+                idx = (record.get(IDX) or {}).get(CUBIC_METER)
+                try:
+                    cur_state = float(idx) if idx is not None else None
+                except (TypeError, ValueError):
+                    continue
+
+                if cur_state is None:
+                    continue
+
+                start_dt = datetime(
+                    d.year, d.month, d.day, 0, 0, 0, tzinfo=timezone.utc
+                )
+                cur_sum = cur_state
+
+                # Forward-fill
+                if last_date is not None:
+                    gap = (d - last_date).days
+                    if gap > 1 and last_state is not None and last_sum is not None:
+                        for i in range(1, gap):
+                            fill_d = last_date + timedelta(days=i)
+                            fill_dt = datetime(
+                                fill_d.year,
+                                fill_d.month,
+                                fill_d.day,
+                                0,
+                                0,
+                                0,
+                                tzinfo=timezone.utc,
+                            )
+                            index_stats_m3.append(
+                                {"start": fill_dt, "state": last_state, "sum": last_sum}
+                            )
+                index_stats_m3.append(
+                    {"start": start_dt, "state": cur_state, "sum": cur_sum}
+                )
+
+                last_state = cur_state
+                last_sum = cur_sum
+                last_date = d
+
+            # Forward-fill until today
+            if (
+                last_date is not None
+                and last_state is not None
+                and last_sum is not None
+            ):
+                today = datetime.now(timezone.utc).date()
+                gap = (today - last_date).days
+                if gap >= 1:
+                    for i in range(1, gap + 1):
+                        fill_d = last_date + timedelta(days=i)
+                        fill_dt = datetime(
+                            fill_d.year,
+                            fill_d.month,
+                            fill_d.day,
+                            0,
+                            0,
+                            0,
+                            tzinfo=timezone.utc,
+                        )
+                        index_stats_m3.append(
+                            {"start": fill_dt, "state": last_state, "sum": last_sum}
+                        )
         except Exception:
             daily_stats_liters = []
+            monthly_stats_cubic_meters = []
             index_stats_m3 = []
 
         comp = VeoliaComputed(
@@ -181,6 +259,7 @@ class VeoliaModel:
             daily_fiability=daily_fiability,
             monthly_fiability=monthly_fiability,
             daily_stats_liters=daily_stats_liters,
+            monthly_stats_cubic_meters=monthly_stats_cubic_meters,
             index_stats_m3=index_stats_m3,
             daily_today_liters=daily_today_liters,
             daily_today_m3=daily_today_m3,
