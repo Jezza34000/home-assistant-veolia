@@ -15,6 +15,7 @@ from .const import (
     IDX,
     IDX_FIABILITY,
     LITRE,
+    LOGGER,
     MONTH,
     YEAR,
 )
@@ -53,7 +54,6 @@ class VeoliaComputed:
     last_daily_liters: int | None
     last_daily_m3: float | None
     monthly_latest_m3: float | None
-    annual_total_m3: float | None
     last_date: date | None
     daily_fiability: str | None
     monthly_fiability: str | None
@@ -81,43 +81,26 @@ class VeoliaModel:
         """Read data and populate VeoliaComputed model."""
         daily = raw.daily_consumption or []
         monthly = raw.monthly_consumption or []
-
         last_daily = _safe_last(daily) or {}
         last_month = _safe_last(monthly) or {}
-
         last_index_m3 = (last_daily.get(IDX) or {}).get(CUBIC_METER) or (
             last_month.get(IDX) or {}
         ).get(CUBIC_METER)
         last_index_m3 = float(last_index_m3) if last_index_m3 is not None else None
-
         last_daily_liters = (last_daily.get(CONSO) or {}).get(LITRE)
         last_daily_liters = (
             int(last_daily_liters) if last_daily_liters is not None else None
         )
-
         last_daily_m3 = (last_daily.get(CONSO) or {}).get(CUBIC_METER)
         last_daily_m3 = float(last_daily_m3) if last_daily_m3 is not None else None
-
         monthly_latest_m3 = (last_month.get(CONSO) or {}).get(CUBIC_METER)
         monthly_latest_m3 = (
             float(monthly_latest_m3) if monthly_latest_m3 is not None else None
         )
-
-        try:
-            annual_total_m3 = float(
-                sum(
-                    float((m.get(CONSO) or {}).get(CUBIC_METER) or 0.0) for m in monthly
-                )
-            )
-        except Exception:
-            annual_total_m3 = None
-
         d_last = (last_daily or {}).get(DATA_DATE)
         last_date = _parse_date(d_last) if d_last else None
-
         daily_fiability = (last_daily or {}).get(IDX_FIABILITY)
         monthly_fiability = (last_month or {}).get(CONSO_FIABILITY)
-
         if today is None:
             today = datetime.now().date()
         rec_today = _find_last_for_date(daily, today)
@@ -130,7 +113,6 @@ class VeoliaModel:
             daily_today_liters = None
             daily_today_m3 = None
             daily_today_fiability = None
-
         # Recorder data
         daily_stats_liters: list[dict] = []
         monthly_stats_cubic_meters: list[dict] = []
@@ -149,7 +131,6 @@ class VeoliaModel:
                 daily_stats_liters.append(
                     {"start": start, "state": liters, "sum": cumul_liters}
                 )
-
             # Statistics for Monthly
             cumul_cubic_meter = 0
             for rec in monthly:
@@ -165,36 +146,29 @@ class VeoliaModel:
                 monthly_stats_cubic_meters.append(
                     {"start": start, "state": cubic_meter, "sum": cumul_cubic_meter}
                 )
-
-            index_stats_m3 = []
             last_state = None
             last_sum = None
             last_date = None
-
+            LOGGER.debug("Computing index_stats_m3 with data = %s", daily)
             for record in daily:
                 date_str = record.get(DATA_DATE)
                 if not date_str:
                     continue
-
                 try:
                     d = datetime.strptime(date_str, "%Y-%m-%d").date()
                 except ValueError:
                     continue
-
                 idx = (record.get(IDX) or {}).get(CUBIC_METER)
                 try:
                     cur_state = float(idx) if idx is not None else None
                 except (TypeError, ValueError):
                     continue
-
                 if cur_state is None:
                     continue
-
                 start_dt = datetime(
                     d.year, d.month, d.day, 0, 0, 0, tzinfo=timezone.utc
                 )
                 cur_sum = cur_state
-
                 # Forward-fill
                 if last_date is not None:
                     gap = (d - last_date).days
@@ -216,11 +190,9 @@ class VeoliaModel:
                 index_stats_m3.append(
                     {"start": start_dt, "state": cur_state, "sum": cur_sum}
                 )
-
                 last_state = cur_state
                 last_sum = cur_sum
                 last_date = d
-
             # Forward-fill until today
             if (
                 last_date is not None
@@ -244,17 +216,18 @@ class VeoliaModel:
                         index_stats_m3.append(
                             {"start": fill_dt, "state": last_state, "sum": last_sum}
                         )
-        except Exception:
+        except Exception as e:
+            LOGGER.warning(
+                "An exception occur when computing Statistics, details=%s", e
+            )
             daily_stats_liters = []
             monthly_stats_cubic_meters = []
             index_stats_m3 = []
-
         comp = VeoliaComputed(
             last_index_m3=last_index_m3,
             last_daily_liters=last_daily_liters,
             last_daily_m3=last_daily_m3,
             monthly_latest_m3=monthly_latest_m3,
-            annual_total_m3=annual_total_m3,
             last_date=last_date,
             daily_fiability=daily_fiability,
             monthly_fiability=monthly_fiability,
