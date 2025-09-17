@@ -115,7 +115,7 @@ class MonthlySMSAlerts(SwitchEntity):
         return {
             "identifiers": {(DOMAIN, self.config_entry.entry_id)},
             "manufacturer": NAME,
-            "name": f"{NAME} - {self.coordinator.data.id_abonnement}",
+            "name": f"{NAME} {self.coordinator.data.id_abonnement}",
         }
 
     @property
@@ -197,7 +197,7 @@ class UnoccupiedAlertSwitch(SwitchEntity):
         return {
             "identifiers": {(DOMAIN, self.config_entry.entry_id)},
             "manufacturer": NAME,
-            "name": f"{NAME} - {self.coordinator.data.id_abonnement}",
+            "name": f"{NAME} {self.coordinator.data.id_abonnement}",
         }
 
     @property
