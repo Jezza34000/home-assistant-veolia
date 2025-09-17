@@ -9,7 +9,7 @@ from homeassistant.const import UnitOfVolume
 from homeassistant.core import callback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DOMAIN, LOGGER, NAME
+from .const import DOMAIN, LOGGER
 from .entity import VeoliaMesurements
 
 
@@ -21,7 +21,6 @@ async def async_setup_entry(hass, entry, async_add_devices) -> None:
         LastIndexSensor(coordinator, entry),
         DailyConsumption(coordinator, entry),
         MonthlyConsumption(coordinator, entry),
-        AnnualConsumption(coordinator, entry),
         LastDateSensor(coordinator, entry),
     ]
     async_add_devices(sensors)
@@ -275,52 +274,6 @@ class MonthlyConsumption(VeoliaMesurements):
         async_import_statistics(self.hass, metadata, stats)
 
 
-class AnnualConsumption(VeoliaMesurements):
-    """AnnualConsumption sensor."""
-
-    @property
-    def unique_id(self) -> str:
-        """Return a unique ID to use for this entity."""
-        return f"{self.config_entry.entry_id}_annual_consumption"
-
-    @property
-    def has_entity_name(self) -> bool:
-        """Indicate that entity has name defined."""
-        return True
-
-    @property
-    def translation_key(self) -> str:
-        """Translation key for this entity."""
-        return "annual_consumption"
-
-    @property
-    def native_value(self) -> float | None:
-        """Return sensor value."""
-        value = self.coordinator.data.computed.annual_total_m3
-        LOGGER.debug("Sensor %s value : %s", self.__class__.__name__, value)
-        return value
-
-    @property
-    def state_class(self) -> str:
-        """Return the state_class of the sensor."""
-        return SensorStateClass.TOTAL_INCREASING
-
-    @property
-    def native_unit_of_measurement(self) -> str:
-        """Return the unit_of_measurement of the sensor."""
-        return UnitOfVolume.CUBIC_METERS
-
-    @property
-    def suggested_display_precision(self) -> int:
-        """Return the suggested display precision."""
-        return 3
-
-    @property
-    def icon(self) -> str | None:
-        """Set icon."""
-        return "mdi:water"
-
-
 class LastDateSensor(CoordinatorEntity, SensorEntity):
     """LastDateSensor sensor."""
 
@@ -328,15 +281,6 @@ class LastDateSensor(CoordinatorEntity, SensorEntity):
         """Initialize the entity."""
         super().__init__(coordinator)
         self.config_entry = config_entry
-
-    @property
-    def device_info(self) -> dict:
-        """Return device registry information for this entity."""
-        return {
-            "identifiers": {(DOMAIN, self.config_entry.entry_id)},
-            "manufacturer": NAME,
-            "name": NAME,
-        }
 
     @property
     def unique_id(self) -> str:
