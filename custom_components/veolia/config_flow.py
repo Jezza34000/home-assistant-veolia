@@ -7,8 +7,9 @@ import voluptuous as vol
 
 from homeassistant import config_entries
 from homeassistant.const import CONF_PASSWORD, CONF_USERNAME
+from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from .const import DOMAIN
+from .const import DOMAIN, LOGGER
 
 
 class VeoliaFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
@@ -39,6 +40,7 @@ class VeoliaFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_select_commune(self, user_input=None) -> dict:
         """Handle the selection of a commune."""
+        LOGGER.debug("Check city postal to for integration compatibility")
         if user_input is not None:
             selected_commune = next(
                 (
@@ -79,9 +81,14 @@ class VeoliaFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_credentials(self, user_input=None) -> dict:
         """Handle the input of credentials."""
+        LOGGER.debug("Request credentials")
         if user_input is not None:
             try:
-                api = VeoliaAPI(user_input[CONF_USERNAME], user_input[CONF_PASSWORD])
+                api = VeoliaAPI(
+                    user_input[CONF_USERNAME],
+                    user_input[CONF_PASSWORD],
+                    async_get_clientsession(self.hass),
+                )
                 valid = await api.login()
 
                 if valid:
@@ -92,6 +99,7 @@ class VeoliaFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             except (VeoliaAPIAuthError, VeoliaAPIInvalidCredentialsError):
                 self._errors["base"] = "invalid_credentials"
             except Exception:  # noqa: BLE001
+                LOGGER.debug("Unknown exception")
                 self._errors["base"] = "unknown"
 
             return await self._show_credentials_form(user_input)
