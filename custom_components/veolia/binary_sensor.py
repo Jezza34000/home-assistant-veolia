@@ -31,7 +31,7 @@ class DailyAlerts(BinarySensorEntity):
         return {
             "identifiers": {(DOMAIN, self.config_entry.entry_id)},
             "manufacturer": NAME,
-            "name": NAME,
+            "name": f"{NAME} - {self.coordinator.data.id_abonnement}",
         }
 
     @property
@@ -84,7 +84,7 @@ class MonthlyAlerts(BinarySensorEntity):
         return {
             "identifiers": {(DOMAIN, self.config_entry.entry_id)},
             "manufacturer": NAME,
-            "name": NAME,
+            "name": f"{NAME} - {self.coordinator.data.id_abonnement}",
         }
 
     @property
@@ -137,7 +137,7 @@ class UnoccupiedAlert(BinarySensorEntity):
         return {
             "identifiers": {(DOMAIN, self.config_entry.entry_id)},
             "manufacturer": NAME,
-            "name": NAME,
+            "name": f"{NAME} - {self.coordinator.data.id_abonnement}",
         }
 
     @property
