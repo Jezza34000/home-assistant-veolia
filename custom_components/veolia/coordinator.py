@@ -55,9 +55,9 @@ class VeoliaDataUpdateCoordinator(DataUpdateCoordinator):
 
             if not self._initial_historical_fetch:
                 # First init
-                LOGGER.debug("Initial fetch 2 years")
+                LOGGER.debug("Initial fetch 1 year")
                 end_date = date(now.year, now.month, 1)
-                start_date = date(end_date.year, end_date.month - 3, 1)
+                start_date = date(end_date.year - 1, end_date.month, 1)
                 self._initial_historical_fetch = True
             else:
                 # Regular fetch

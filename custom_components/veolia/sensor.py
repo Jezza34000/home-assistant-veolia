@@ -80,18 +80,14 @@ class LastIndexSensor(VeoliaMesurements):
         """Set icon."""
         return "mdi:counter"
 
-    async def async_added_to_hass(self) -> None:
-        """Start historical update on HA add."""
-        await super().async_added_to_hass()
-        self._update_historical_data()
-
-    def _handle_coordinator_update(self) -> None:
-        """Handle a historical update on data update."""
-        self._update_historical_data()
-        super()._handle_coordinator_update()
+    # NOT WORKING
+    # async def async_added_to_hass(self) -> None:
+    #     """Start historical update on HA add."""
+    #     await self._update_historical_data()
+    #     await super().async_added_to_hass()
 
     @callback
-    def _update_historical_data(self) -> None:
+    async def _update_historical_data(self) -> None:
         """Update historical values."""
         LOGGER.debug("Update_historical_data for %s", self.__class__.__name__)
         stats = self.coordinator.data.computed.index_stats_m3
@@ -146,16 +142,11 @@ class DailyConsumption(VeoliaMesurements):
 
     async def async_added_to_hass(self) -> None:
         """Start historical update on HA add."""
+        await self._update_historical_data()
         await super().async_added_to_hass()
-        self._update_historical_data()
-
-    def _handle_coordinator_update(self) -> None:
-        """Handle a historical update on data update."""
-        self._update_historical_data()
-        super()._handle_coordinator_update()
 
     @callback
-    def _update_historical_data(self) -> None:
+    async def _update_historical_data(self) -> None:
         """Update historical values."""
         LOGGER.debug("Update_historical_data for %s", self.__class__.__name__)
         stats = self.coordinator.data.computed.daily_stats_liters
@@ -246,16 +237,11 @@ class MonthlyConsumption(VeoliaMesurements):
 
     async def async_added_to_hass(self) -> None:
         """Start historical update on HA add."""
+        await self._update_historical_data()
         await super().async_added_to_hass()
-        self._update_historical_data()
-
-    def _handle_coordinator_update(self) -> None:
-        """Handle a historical update on data update."""
-        self._update_historical_data()
-        super()._handle_coordinator_update()
 
     @callback
-    def _update_historical_data(self) -> None:
+    async def _update_historical_data(self) -> None:
         """Update historical values."""
         LOGGER.debug("Update_historical_data for %s", self.__class__.__name__)
         stats = self.coordinator.data.computed.monthly_stats_cubic_meters
