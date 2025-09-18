@@ -1,4 +1,4 @@
-<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/home-assistant-veolia/main/images/veolialogo.png"></a>
+<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/homeassistant_veolia/main/images/veolialogo.png"></a>
 
 [![GitHub Release][releases-shield]][releases]
 [![hacs][hacsbadge]][hacs]
@@ -40,11 +40,11 @@
 
 ### Capteurs :
 
-<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/home-assistant-veolia/main/images/capteurs.png"></a>
+<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/homeassistant_veolia/main/images/capteurs.png"></a>
 
 ### Contrôles :
 
-<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/home-assistant-veolia/main/images/controles.png"></a>
+<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/homeassistant_veolia/main/images/controles.png"></a>
 
 ### Configuration des alertes
 
@@ -74,19 +74,19 @@ L'intégration Veolia permet de visualiser les données de consommation d'eau en
 
 #### 1. Ajout au dashboard energie de Home Assistant
 
-<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/home-assistant-veolia/main/images/dashboard_eau.png"></a>
+<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/homeassistant_veolia/main/images/dashboard_eau.png"></a>
 
 Pour ajouter la consommation d'eau au dashboard energie de Home Assistant, allez `Energie` -> 3 petits points en haut à droite -> `Configuration de l'energie` -> `Ajouter une source d'eau` -> Dans le champ `Consommation d'eau` choissisez `sensor.veolia_index_compteur`
 
-<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/home-assistant-veolia/main/images/consommation.png"></a>
+<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/homeassistant_veolia/main/images/consommation.png"></a>
 
 #### 2. Ajout d'une carte de consommation d'eau journalière
 
-<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/home-assistant-veolia/main/images/historique.png"></a>
+<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/homeassistant_veolia/main/images/historique.png"></a>
 
 Pour ajouter la carte de consommation d'eau journalière, sur votre dashboard, cliquez sur `Ajouter une carte` puis selectionner `Graphique des statistiques` et choissisez l'entité `sensor.veolia_consommation_journaliere`, configurer la carte comme l'exemple ci-dessous :
 
-<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/home-assistant-veolia/main/images/config_carte.png"></a>
+<a href=""><img src="https://raw.githubusercontent.com/Jezza34000/homeassistant_veolia/main/images/config_carte.png"></a>
 
 > #### **Note :** La carte Graphique des statistiques ne fonctionnera qu'avec le sensor `sensor.veolia_consommation_journaliere`
 
@@ -96,14 +96,14 @@ Pour ajouter la carte de consommation d'eau journalière, sur votre dashboard, c
 
 **Cliquez ici:**
 
-[![Open your Home Assistant instance and open the repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg?style=flat-square)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Jezza34000&repository=home-assistant-veolia&category=integration)
+[![Open your Home Assistant instance and open the repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg?style=flat-square)](https://my.home-assistant.io/redirect/hacs_repository/?owner=Jezza34000&repository=homeassistant_veolia&category=integration)
 
 **ou suivez ces étapes:**
 
 1. Ouvrez HACS (Home Assistant Community Store)
 2. Cliquez sur les trois points en haut à droite
 3. Cliquez sur `Dépôts personnalisées`
-4. Dans le champ `Dépôt` entrez https://github.com/Jezza34000/home-assistant-veolia/
+4. Dans le champ `Dépôt` entrez https://github.com/Jezza34000/homeassistant_veolia/
 5. Dans le champ `Type` sélectionnez `Intégration`
 6. Cliquez sur `Ajouter`
 7. Recherchez `Veolia` dans la liste des intégrations
@@ -121,7 +121,7 @@ Pour ajouter la carte de consommation d'eau journalière, sur votre dashboard, c
 
 ## Bug et demande de fonctionnalités
 
-- [Cliquez-ici](https://github.com/Jezza34000/home-assistant-veolia/issues)
+- [Cliquez-ici](https://github.com/Jezza34000/homeassistant_veolia/issues)
 
 ## API Veolia
 
@@ -137,10 +137,10 @@ Le modèle de code de cette intégration à principalement été tiré du bluepr
 
 [hacsbadge]: https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge
 [hacs]: https://hacs.xyz
-[releases-shield]: https://img.shields.io/github/v/release/Jezza34000/home-assistant-veolia.svg?style=for-the-badge
-[releases]: https://github.com/Jezza34000/home-assistant-veolia/releases
+[releases-shield]: https://img.shields.io/github/v/release/Jezza34000/homeassistant_veolia.svg?style=for-the-badge
+[releases]: https://github.com/Jezza34000/homeassistant_veolia/releases
 [commits-shield]: https://img.shields.io/github/commit-activity/y/ludeeus/integration_blueprint.svg?style=for-the-badge
-[commits]: https://github.com/Jezza34000/home-assistant-veolia/commits/main
+[commits]: https://github.com/Jezza34000/homeassistant_veolia/commits/main
 [license-shield]: https://img.shields.io/github/license/ludeeus/integration_blueprint.svg?style=for-the-badge
 [maintenance-shield]: https://img.shields.io/badge/maintainer-%20%40Jezza34000-blue.svg?style=for-the-badge
 [sensorsimg]: images/entities.png
