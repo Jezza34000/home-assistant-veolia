@@ -1,6 +1,6 @@
 {
   "domain": "veolia",
-  "name": "Veolia Eau France",
+  "name": "Veolia Eau",
   "codeowners": ["@Jezza34000"],
   "config_flow": true,
   "dependencies": ["recorder"],
