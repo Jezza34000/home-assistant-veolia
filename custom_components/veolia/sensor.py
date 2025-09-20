@@ -154,7 +154,7 @@ class DailyConsumption(VeoliaMesurements):
             LOGGER.debug("No data update for %s", self.__class__.__name__)
             return
         metadata = StatisticMetaData(
-            has_mean=False,
+            has_mean=True,
             has_sum=True,
             name=None,
             source="recorder",
@@ -167,7 +167,7 @@ class DailyConsumption(VeoliaMesurements):
     @property
     def state_class(self) -> str:
         """Return the state_class of the sensor."""
-        return SensorStateClass.TOTAL_INCREASING
+        return SensorStateClass.MEASUREMENT
 
     @property
     def native_unit_of_measurement(self) -> str:
@@ -218,7 +218,7 @@ class MonthlyConsumption(VeoliaMesurements):
     @property
     def state_class(self) -> str:
         """Return the state_class of the sensor."""
-        return SensorStateClass.TOTAL_INCREASING
+        return SensorStateClass.TOTAL
 
     @property
     def native_unit_of_measurement(self) -> str:
