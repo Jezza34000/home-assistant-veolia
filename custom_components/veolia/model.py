@@ -54,6 +54,7 @@ class VeoliaComputed:
     last_daily_liters: int | None
     last_daily_m3: float | None
     monthly_latest_m3: float | None
+    annual_total_m3: float | None
     last_date: date | None
     daily_fiability: str | None
     monthly_fiability: str | None
@@ -97,6 +98,19 @@ class VeoliaModel:
         monthly_latest_m3 = (
             float(monthly_latest_m3) if monthly_latest_m3 is not None else None
         )
+
+        try:
+            current_year = datetime.now().year
+            annual_total_m3 = float(
+                sum(
+                    float((m.get(CONSO) or {}).get(CUBIC_METER) or 0.0)
+                    for m in monthly
+                    if m.get(YEAR) == current_year
+                )
+            )
+        except Exception:
+            annual_total_m3 = None
+
         d_last = (last_daily or {}).get(DATA_DATE)
         last_date = _parse_date(d_last) if d_last else None
         daily_fiability = (last_daily or {}).get(IDX_FIABILITY)
@@ -228,6 +242,7 @@ class VeoliaModel:
             last_daily_liters=last_daily_liters,
             last_daily_m3=last_daily_m3,
             monthly_latest_m3=monthly_latest_m3,
+            annual_total_m3=annual_total_m3,
             last_date=last_date,
             daily_fiability=daily_fiability,
             monthly_fiability=monthly_fiability,
