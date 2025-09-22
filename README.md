@@ -1,11 +1,7 @@
 <a href=""><img src="https://raw.githubusercontent.com/Jezza34000/homeassistant_veolia/main/images/veolialogo.png"></a>
 
 [![GitHub Release][releases-shield]][releases]
-[![hacs][hacsbadge]][hacs]
-
-[![GitHub Activity][commits-shield]][commits]
-[![License][license-shield]](LICENSE)
-![Project Maintenance][maintenance-shield]
+[![HACS Default](https://img.shields.io/badge/HACS-Default-blue.svg?style=for-the-badge)](https://hacs.xyz/docs/faq/custom_repositories)
 
 > ## UNIQUEMENT compatible avec le nouveau site de Veolia : https://www.eau.veolia.fr/
 >
@@ -130,6 +126,10 @@ Cette intégration utilise mon client API Veolia disponible ici : [veolia-api](h
 ## Credits
 
 Le modèle de code de cette intégration à principalement été tiré du blueprint de @Ludeeus. Merci à lui pour son travail.
+
+[![GitHub Activity][commits-shield]][commits]
+[![License][license-shield]](LICENSE)
+![Project Maintenance][maintenance-shield]
 
 ---
 
